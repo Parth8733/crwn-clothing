@@ -10,6 +10,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanedListener((user) => {
       console.log(user);
+      setCurrentUser(user);
     });
     return unsubscribe;
   }, []);

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -10,7 +10,6 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import "../sign-in-form/sign-in-form.styles.scss";
-import { UserContext } from "../../context/user.context";
 
 const defaultFormFields = {
   email: "",
@@ -20,8 +19,6 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formField, setFormField] = useState(defaultFormFields);
   const { email, passowrd } = formField;
-
-  const { setCurrentUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,7 +38,6 @@ const SignInForm = () => {
         email,
         passowrd
       );
-      setCurrentUser(user);
       resetFormField();
     } catch (error) {
       switch (error.code) {
