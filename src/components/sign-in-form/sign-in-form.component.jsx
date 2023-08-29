@@ -54,8 +54,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
   return (
     <div className="sign-in-container">
