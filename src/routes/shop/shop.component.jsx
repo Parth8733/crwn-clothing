@@ -5,7 +5,9 @@ import { useEffect } from "react";
 // import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 // import { setCategories } from "../../store/categories/categories.action";
 import { useDispatch } from "react-redux";
-import { fetchCategoriesAsync } from "../../store/categories/categories.action";
+import { fetchCategoriesStart } from "../../store/categories/categories.action";
+// import { fetchCategoriesAsync } from "../../store/categories/categories.action";
+
 const Shop = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,7 +16,9 @@ const Shop = () => {
     //   dispatch(setCategories(categoriesArray));
     // };
     // getCategoriesMap();
-    dispatch(fetchCategoriesAsync());
+
+    // dispatch(fetchCategoriesAsync()); used for thunk
+    dispatch(fetchCategoriesStart());
   }, []);
   return (
     <Routes>
