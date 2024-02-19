@@ -97,7 +97,9 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error.message);
     }
   }
-  return userDocRef;
+  // return userDocRef; // changed return value for redux-saga
+
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -114,3 +116,16 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChanedListener = (callBack) =>
   onAuthStateChanged(auth, callBack);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsbscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsbscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
